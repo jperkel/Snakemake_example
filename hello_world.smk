@@ -4,11 +4,11 @@
 # By Jeffrey M. Perkel, with help from Johannes Koester
 ###########################
 
-string = "Hello, world! My name is"
-chunklen = 6
+hello_string = "Hello, world! My name is"
+chunk_len = 6
 with open("name.txt","r") as f:
-    text = f.read()
-mylen = int(len(string + text)/chunklen)+1
+    text = f.readline()
+mylen = int(len(hello_string + text)/chunk_len)+1
 letters = "abcdefghijklmnopqrstuvwxyz"
 chunks = ["a{letter}".format(letter = letter) for letter in letters[0:mylen]]
 
@@ -26,7 +26,7 @@ rule helloworld:
     output:
         "hello-world.txt"
     shell:
-        'echo "{string} `cat {input}`!" > {output}'
+        'echo "{hello_string} `cat {input}`!" > {output}'
 
 rule split:
     input:
@@ -34,7 +34,7 @@ rule split:
     output:
         "chunk_{chunk}".format(chunk = chunk) for chunk in chunks
     shell:
-        'echo `cat {input}` | split -b {chunklen} - chunk_'        
+        'echo `cat {input}` | split -b {chunk_len} - chunk_'        
 
 rule toupper:
     input:
