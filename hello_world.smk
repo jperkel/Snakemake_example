@@ -15,7 +15,7 @@ with open("name.txt","r") as f:
 # if there's a trailing carriage return, strip it out...
 if name[len(name)-1] == '\n': name = name[0:len(name)-1]
 
-mylen = int(len(hello_string + name)/chunk_len)+1
+mylen = int(len(hello_string + ' ' + name + '!')/chunk_len)+1
 letters = "abcdefghijklmnopqrstuvwxyz"
 chunks = ["a{letter}".format(letter = letter) for letter in letters[0:mylen]]
 
