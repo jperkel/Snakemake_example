@@ -3,7 +3,6 @@
 # 
 # By Jeffrey M. Perkel, with help from Johannes Koester
 # (Inspired/assisted by the Nextflow tutorial https://www.nextflow.io/docs/latest/getstarted.html) 
-#
 ###########################
 
 hello_string = "Hello, world, my name is"
@@ -15,11 +14,11 @@ with open("name.txt","r") as f:
 
 # if there's a trailing carriage return, strip it out...
 name = name.strip()
-
 msg = hello_string + ' ' + name + '!'
-mylen = int(len(msg)/chunk_len)+1
+
+nFiles = int(len(msg)/chunk_len)+1
 letters = "abcdefghijklmnopqrstuvwxyz"
-chunks = ["a{letter}".format(letter = letter) for letter in letters[0:mylen]]
+chunks = ["a{letter}".format(letter = letter) for letter in letters[0:nFiles]]
 
 rule all:
     input:
