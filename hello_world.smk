@@ -19,6 +19,7 @@ msg = hello_string + ' ' + name + '!'
 mylen = int(len(msg)/chunk_len)+1
 letters = "abcdefghijklmnopqrstuvwxyz"
 chunks = ["a{letter}".format(letter = letter) for letter in letters[0:mylen]]
+tmpfile = "hello-world.tmp"
 
 rule all:
     input:
@@ -28,17 +29,17 @@ rule all:
 # https://hackmd.io/7k6JKE07Q4aCgyNmKQJ8Iw
 rule clean:
     shell:
-        "rm -f chunk_a* hello-world.txt hello-world.tmp"
+        "rm -f chunk_a* {tmpfile} hello-world.txt"
 
 rule helloworld:
     output:
-        "hello-world.tmp"
+        {tmpfile}
     shell:
         'echo {msg} > {output}'
 
 rule split:
     input:
-        "hello-world.tmp"
+        {tmpfile}
     output:
         "chunk_{chunk}".format(chunk = chunk) for chunk in chunks
     shell:
