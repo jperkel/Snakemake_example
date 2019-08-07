@@ -2,6 +2,8 @@
 # 'Hello, world!' Snakemake example
 # 
 # By Jeffrey M. Perkel, with help from Johannes Koester
+# (Inspired/assisted by the Nextflow tutorial https://www.nextflow.io/docs/latest/getstarted.html) 
+#
 ###########################
 
 hello_string = "Hello, world! My name is"
