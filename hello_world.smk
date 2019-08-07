@@ -21,6 +21,8 @@ rule all:
     input:
         "hello-world-upper.txt"
 
+# ht Titus Brown
+# https://hackmd.io/7k6JKE07Q4aCgyNmKQJ8Iw
 rule clean:
     shell:
         "rm -f chunk_a* hello-world.txt hello-world-upper.txt"
