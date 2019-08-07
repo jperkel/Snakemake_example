@@ -22,23 +22,23 @@ chunks = ["a{letter}".format(letter = letter) for letter in letters[0:mylen]]
 
 rule all:
     input:
-        "hello-world-upper.txt"
+        "hello-world.txt"
 
 # ht Titus Brown
 # https://hackmd.io/7k6JKE07Q4aCgyNmKQJ8Iw
 rule clean:
     shell:
-        "rm -f chunk_a* hello-world.txt hello-world-upper.txt"
+        "rm -f chunk_a* hello-world.txt hello-world.tmp"
 
 rule helloworld:
     output:
-        "hello-world.txt"
+        "hello-world.tmp"
     shell:
         'echo {msg} > {output}'
 
 rule split:
     input:
-        "hello-world.txt"
+        "hello-world.tmp"
     output:
         "chunk_{chunk}".format(chunk = chunk) for chunk in chunks
     shell:
@@ -48,6 +48,6 @@ rule toupper:
     input:
         "chunk_{chunk}".format(chunk = chunk) for chunk in chunks 
     output:
-        "hello-world-upper.txt"
+        "hello-world.txt"
     shell:
         'echo `cat {input}` | tr "[:lower:]" "[:upper:]" >> {output}'
