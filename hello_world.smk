@@ -6,20 +6,20 @@
 #
 ###########################
 
-hello_string = "Hello, world! My name is"
+hello_string = "Hello, world, my name is"
 chunk_len = 6 # number of bytes per file chunk in rule 'split'
+tmpfile = "hello-world.tmp"
 
 with open("name.txt","r") as f:
     name = f.readline() # read first line of name.txt
 
 # if there's a trailing carriage return, strip it out...
-if name[len(name)-1] == '\n': name = name[0:len(name)-1]
+name = name.strip()
 
 msg = hello_string + ' ' + name + '!'
 mylen = int(len(msg)/chunk_len)+1
 letters = "abcdefghijklmnopqrstuvwxyz"
 chunks = ["a{letter}".format(letter = letter) for letter in letters[0:mylen]]
-tmpfile = "hello-world.tmp"
 
 rule all:
     input:
